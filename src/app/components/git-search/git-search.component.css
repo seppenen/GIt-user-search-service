@@ -1,0 +1,21 @@
+.search{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+.input{
+
+    width: 800px;
+}
+.title{
+    text-align: center;
+}
+.searchBtn{
+    margin: 5px;
+}
+
+.result{
+display: block;
+}

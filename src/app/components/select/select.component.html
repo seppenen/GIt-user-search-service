@@ -1,0 +1,10 @@
+
+    <div>
+      <ng-container *ngIf="searchTypeItems">
+        <div  class="searchTypeBtn" *ngFor="let item of searchTypeItems" >
+         <input  type="button" [ngClass]="item.checked ? ' active' : ''"  value="{{item.label}}" (click)="updateStatus(item)"> 
+        </div>
+      </ng-container>
+      
+    </div>
+

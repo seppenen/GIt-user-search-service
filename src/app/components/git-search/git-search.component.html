@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="title"><h1> Git user search </h1></div>
+    <div class="search">
+        <app-select (onChange)="setSearchTypes($event)"></app-select>
+       </div>
+       <div class="search">
+    <input type="text" class="input" [(ngModel)]="input">
+
+    <input type="button" value="Search" (click)="getData()"> 
+    </div>  
+     <div class="result">Result:<span *ngFor="let user of userProfile">
+         <h3>{{user.login}}</h3> </span></div>
+
+</body>
+</html>
