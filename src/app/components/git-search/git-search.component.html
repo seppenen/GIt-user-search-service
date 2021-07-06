@@ -23,7 +23,7 @@
                     {{item.login}} 
                </div>
                <div class="gitLink">
-                   <button>Link to Github</button> 
+                   <button (click)="openGitProfile(item)">Link to Github</button> 
                 </div>    
             </div> 
             <div *ngIf="totalItems>=10">

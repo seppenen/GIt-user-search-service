@@ -24,6 +24,9 @@ export class GitSearchComponent   {
     this.searchType=data
   }
 
+  openGitProfile(item){
+    window.open("http://github.com/"+item.login);
+  }
 
   getData(){
     this.apiservice.fetch(this.searchType,this.input).subscribe((response)=>{
