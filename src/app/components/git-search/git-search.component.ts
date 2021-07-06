@@ -1,8 +1,6 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {ApiService} from '../../services/api.service';
 import {DataObj} from '../../models/models'
-
-
 
 @Component({
   selector: 'app-git-search',
@@ -17,7 +15,7 @@ export class GitSearchComponent   {
   page:number=1
   itemsPerPage:number=10
   totalItems:number
-
+ 
   constructor(private apiservice:ApiService) { }
  
   setSearchTypes(data:DataObj){
@@ -32,10 +30,16 @@ export class GitSearchComponent   {
     this.apiservice.fetch(this.searchType,this.input).subscribe((response)=>{
     this.userProfile=response["items"]
     this.totalItems=response["items"].length
-    this.input=''
+    this.resetSearchParams()
     },
-    (_error) => {
-       console.log("Error", _error.status)
+    (error) => {
+       console.log("getData not implemented", error.status)
     })
+  }
+
+  resetSearchParams(){
+  this.input=''
+  this.page=1
+    
   }
 }

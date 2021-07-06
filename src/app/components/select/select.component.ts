@@ -1,5 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { DataObj } from 'src/app/models/models';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {DataObj} from 'src/app/models/models';
 
 
 @Component({
@@ -35,6 +35,7 @@ export class SelectComponent implements OnInit {
         }
     }
     )
+    
   }
 
 }
