@@ -3,6 +3,7 @@ import {ApiService} from '../../services/api.service';
 import {DataObj} from '../../models/models'
 
 
+
 @Component({
   selector: 'app-git-search',
   templateUrl: './git-search.component.html',
@@ -13,6 +14,9 @@ export class GitSearchComponent   {
   userProfile:DataObj
   searchType:DataObj
   input:string
+  page:number=1
+  itemsPerPage:number=10
+  totalItems:number
 
   constructor(private apiservice:ApiService) { }
  
@@ -22,13 +26,13 @@ export class GitSearchComponent   {
 
 
   getData(){
-    console.log("Input",this.input)
     this.apiservice.fetch(this.searchType,this.input).subscribe((response)=>{
-    this.userProfile=response["items"];
+    this.userProfile=response["items"]
+    this.totalItems=response["items"].length
     this.input=''
     },
     (_error) => {
-       console.log("Error", _error.status);
+       console.log("Error", _error.status)
     })
   }
 }

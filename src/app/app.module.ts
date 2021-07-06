@@ -4,14 +4,13 @@ import { HttpClientModule} from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
-import { ListfilterPipe } from './pipes/listfilter.pipe';
 import { GitSearchComponent } from './components/git-search/git-search.component';
 import { SelectComponent } from './components/select/select.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ListfilterPipe,
     GitSearchComponent,
     SelectComponent,
     
@@ -20,7 +19,8 @@ import { SelectComponent } from './components/select/select.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule
   ],
   providers: [
     

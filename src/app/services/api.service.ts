@@ -16,7 +16,7 @@ export class ApiService  {
 
   fetch(dataObj,input) {
   const param= dataObj.find(item=>(item.checked==true))
-  return this.http.get<DataObj>(this.baseUrl+"search/users?q="+param.value+input)
+  return this.http.get<DataObj>(this.baseUrl+"search/users?q="+param.value+input+"&per_page=100")
   }
   
 }

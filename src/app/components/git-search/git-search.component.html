@@ -7,17 +7,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <div class="title"><h1> Git user search </h1></div>
-    <div class="search">
+    <div class="container">
+     <div class="wrapper">
+         <div class="title"><h1> Git user search </h1></div>
+     <div class="search">
         <app-select (onChange)="setSearchTypes($event)"></app-select>
-       </div>
-       <div class="search">
+    </div>
+    <div class="search">
     <input type="text" class="input" [(ngModel)]="input">
-
     <input type="button" value="Search" (click)="getData()"> 
     </div>  
-     <div class="result">Result:<span *ngFor="let user of userProfile">
-         <h3>{{user.login}}</h3> </span></div>
-
+     <div class="resultContent" > 
+        <div class="resultItem"  *ngFor="let item of userProfile | paginate: { itemsPerPage: 10, currentPage: page }">
+                <div class="item"> 
+                    {{item.login}} 
+               </div>
+               <div class="gitLink">
+                   <button>Link to Github</button> 
+                </div>    
+            </div> 
+            <div *ngIf="totalItems>=10">
+                  <pagination-controls (pageChange)="page = $event"></pagination-controls>
+            </div>
+    </div>
+    </div>
+</div>
 </body>
 </html>
