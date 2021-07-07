@@ -8,7 +8,7 @@ import {PaginationService} from '../../services/pagination.service'
   templateUrl: './git-search.component.html',
   styleUrls: ['./git-search.component.css']
 })
-export class GitSearchComponent implements OnInit, AfterContentChecked  {
+export class GitSearchComponent implements OnInit  {
 
   userProfile:DataObj
   searchTypes:DataObj
@@ -19,10 +19,7 @@ export class GitSearchComponent implements OnInit, AfterContentChecked  {
 
   
   constructor(private paginationService: PaginationService, private apiservice:ApiService,private selectService: SelectService) { }
-  ngAfterContentChecked(): void {
 
-    
-  }
   
   ngOnInit(): void {
     this.searchTypes=this.selectService.createData()
