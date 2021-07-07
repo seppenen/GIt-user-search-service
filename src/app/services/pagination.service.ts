@@ -11,6 +11,7 @@ export class PaginationService {
   constructor() { }
 
   getPages(page, total_count){
+    this.buttonArray=[]
     this.currentPage=page;	
     this.lastPage=Math.ceil(total_count / 20)
 
@@ -23,19 +24,15 @@ export class PaginationService {
   }  
 
     if (this.currentPage == 1 || this.currentPage == 2 || this.currentPage == 3) {
-      this.buttonArray=[]
-     
-      for(var i = 1; i <= 7; i++){
     
+      for(var i = 1; i <= 7; i++){
         if((total_count-20)>=0){
           console.log(i)
           this.buttonArray.push(i)
         }else{
           this.buttonArray=[1]
         }
-       
      }
-     
     }
     else if (this.currentPage == this.lastPage || this.currentPage == this.lastPage - 1) {
       this.buttonArray = [this.lastPage - 3, this.lastPage - 2, this.lastPage - 1, this.lastPage ];
