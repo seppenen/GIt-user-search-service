@@ -27,7 +27,6 @@ export class PaginationService {
     
       for(var i = 1; i <= 7; i++){
         if((total_count-20)>=0){
-          console.log(i)
           this.buttonArray.push(i)
         }else{
           this.buttonArray=[1]
