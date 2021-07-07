@@ -5,14 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { GitSearchComponent } from './components/git-search/git-search.component';
-import { SelectComponent } from './components/select/select.component';
-import {NgxPaginationModule} from 'ngx-pagination';
-
 @NgModule({
   declarations: [
     AppComponent,
     GitSearchComponent,
-    SelectComponent,
+    
     
   ],
   imports: [
@@ -20,7 +17,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    NgxPaginationModule
+    
   ],
   providers: [
     

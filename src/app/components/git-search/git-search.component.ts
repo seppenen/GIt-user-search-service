@@ -1,45 +1,60 @@
-import {Component} from '@angular/core';
+import {AfterContentChecked, Component, OnInit} from '@angular/core';
 import {ApiService} from '../../services/api.service';
 import {DataObj} from '../../models/models'
-
+import {SelectService} from '../../services/select.service'
+import {PaginationService} from '../../services/pagination.service'
 @Component({
   selector: 'app-git-search',
   templateUrl: './git-search.component.html',
   styleUrls: ['./git-search.component.css']
 })
-export class GitSearchComponent   {
+export class GitSearchComponent implements OnInit, AfterContentChecked  {
 
   userProfile:DataObj
-  searchType:DataObj
+  searchTypes:DataObj
+  pages:any
   input:string
-  page:number=1
-  itemsPerPage:number=10
-  totalItems:number
- 
-  constructor(private apiservice:ApiService) { }
- 
-  setSearchTypes(data:DataObj){
-    this.searchType=data
-  }
+  currentPage=1
+  total_count:number
 
+  
+  constructor(private paginationService: PaginationService, private apiservice:ApiService,private selectService: SelectService) { }
+  ngAfterContentChecked(): void {
+
+    
+  }
+  
+  ngOnInit(): void {
+    this.searchTypes=this.selectService.createData()
+
+  }
+  
+  setSearchType(selected:any){
+    this.selectService.updateStatus(selected,this.searchTypes)
+  }
+  
   openGitProfile(item){
     window.open("http://github.com/"+item.login);
   }
 
-  getData(){
-    this.apiservice.fetch(this.searchType,this.input).subscribe((response)=>{
-    this.userProfile=response["items"]
-    this.totalItems=response["items"].length
-    this.resetSearchParams()
-    },
-    (error) => {
-       console.log("getData not implemented", error.status)
-    })
+
+  changePage(page){
+   this.currentPage=page
+   this.getUserData()
   }
 
-  resetSearchParams(){
-  this.input=''
-  this.page=1
-    
+  getUserData(){
+    let total_count:number
+    this.apiservice.fetch(this.searchTypes,this.input,this.currentPage).subscribe((response)=>{
+     
+      this.userProfile=response["items"]
+      total_count=response["total_count"]
+      this.pages=this.paginationService.getPages(this.currentPage,total_count);  
+    },
+      (error) => {
+         console.log("getData not implemented", error.status)
+      })
+      
   }
+
 }

@@ -1,11 +1,10 @@
 
 export class DataObj {
-      map(arg0: (item: any) => void) {
-        throw new Error('Method not implemented.')
-      }
+     
 
       userProfile:userProfile
       searchType:searchType
+      
 }
 
 type userProfile = {

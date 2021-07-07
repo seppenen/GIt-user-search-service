@@ -14,9 +14,9 @@ export class ApiService  {
  
   constructor(private http: HttpClient) { }
 
-  fetch(dataObj,input) {
+  fetch(dataObj,input,currentPage) {
   const param= dataObj.find(item=>(item.checked==true))
-  return this.http.get<DataObj>(this.baseUrl+"search/users?q="+param.value+input+"&per_page=100")
+  return this.http.get<DataObj>(this.baseUrl+"search/users?q="+param.value+input+"&page="+currentPage+"&per_page=20")
   }
   
 }
