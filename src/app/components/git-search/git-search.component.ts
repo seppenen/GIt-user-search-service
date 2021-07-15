@@ -15,8 +15,6 @@ export class GitSearchComponent implements OnInit  {
   pages:any
   input:string
   currentPage=1
-  total_count:number
-
   
   constructor(private paginationService: PaginationService, private apiservice:ApiService,private selectService: SelectService) { }
 
@@ -34,7 +32,6 @@ export class GitSearchComponent implements OnInit  {
     window.open("http://github.com/"+item.login);
   }
 
-
   changePage(page){
    this.currentPage=page
    this.getUserData()
@@ -42,11 +39,13 @@ export class GitSearchComponent implements OnInit  {
 
   getUserData(){
     let total_count:number
-    this.apiservice.fetch(this.searchTypes,this.input,this.currentPage).subscribe((response)=>{
-     
-      this.userProfile=response["items"]
-      total_count=response["total_count"]
-      this.pages=this.paginationService.getPages(this.currentPage,total_count);  
+    const searchParam=this.searchTypes.find(item=>(item.checked==true))
+    this.apiservice.fetch(searchParam.value,this.input,this.currentPage).subscribe((response)=>{
+
+        this.userProfile=response["items"]
+        total_count=response["total_count"]
+        this.pages=this.paginationService.getPages(this.currentPage,total_count); 
+
     },
       (error) => {
          console.log("getData not implemented", error.status)

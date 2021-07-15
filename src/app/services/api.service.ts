@@ -8,15 +8,14 @@ import { DataObj } from '../models/models';
   providedIn: 'root'
 })
 export class ApiService  {
-  
-  @Input() dataObj:DataObj
+
   baseUrl:string = environment.baseUrl
  
   constructor(private http: HttpClient) { }
 
-  fetch(dataObj,input,currentPage) {
-  const param= dataObj.find(item=>(item.checked==true))
-  return this.http.get<DataObj>(this.baseUrl+"search/users?q="+param.value+input+"&page="+currentPage+"&per_page=20")
+  fetch(searchParam,input,currentPage) {
+    return this.http.get<DataObj>
+        (this.baseUrl+"search/users?q="+searchParam+input+"&page="+currentPage+"&per_page=20")
   }
   
 }

@@ -1,7 +1,10 @@
 
 export class DataObj {
-     
 
+      find(arg0: (item: any) => boolean):any {
+        throw new Error('Method not implemented.')
+      }
+     
       userProfile:userProfile
       searchType:searchType
       
