@@ -29,7 +29,7 @@ export class GitSearchComponent implements OnInit  {
   }
   
   openGitProfile(item){
-    window.open("http://github.com/"+item.login);
+    window.open("http://github.com/"+item.login)
   }
 
   changePage(page){
@@ -40,6 +40,7 @@ export class GitSearchComponent implements OnInit  {
   getUserData(){
     let total_count:number
     const searchParam=this.searchTypes.find(item=>(item.checked==true))
+
     this.apiservice.fetch(searchParam.value,this.input,this.currentPage).subscribe((response)=>{
 
         this.userProfile=response["items"]
