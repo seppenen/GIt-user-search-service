@@ -1,5 +1,6 @@
 
 import {Injectable} from '@angular/core';
+import { DataObj } from '../models/models';
 
 
 @Injectable({

@@ -40,13 +40,11 @@ export class GitSearchComponent implements OnInit  {
   getUserData(){
     let total_count:number
     const searchParam=this.searchTypes.find(item=>(item.checked==true))
-
-    this.apiservice.fetch(searchParam.value,this.input,this.currentPage).subscribe((response)=>{
-
-        this.userProfile=response["items"]
-        total_count=response["total_count"]
-        this.pages=this.paginationService.getPages(this.currentPage,total_count); 
-
+    this.apiservice.fetch(searchParam.value,this.input,this.currentPage)
+        .subscribe((response)=>{
+            this.userProfile=response["items"]
+            total_count=response["total_count"]
+            this.pages=this.paginationService.getPages(this.currentPage,total_count)
     },
       (error) => {
          console.log("getData not implemented", error.status)
