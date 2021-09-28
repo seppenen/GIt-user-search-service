@@ -1,6 +1,5 @@
 
 import {Injectable} from '@angular/core';
-import { DataObj } from '../models/models';
 
 
 @Injectable({
@@ -10,21 +9,22 @@ export class SelectService {
 
   constructor() {}
 
-  createData(){ 
-   const searchTypeItems:any=[]
-   searchTypeItems.push({value: "user:",label:"User",checked:true})
-   searchTypeItems.push({value: "location:",label:"Location",checked:false})
-   searchTypeItems.push({value: "language:",label:"Language",checked:false})
+  createData = () => {
+   const searchTypeItems: any = [];
+   searchTypeItems.push({value: 'user:', label: 'User', checked: true});
+   searchTypeItems.push({value: 'location:', label: 'Location', checked: false});
+   searchTypeItems.push({value: 'language:', label: 'Language', checked: false});
 
-   return searchTypeItems
+   return searchTypeItems;
   }
 
-   updateStatus(selected,searchTypes){
-    searchTypes.map(item=>{
-      item.checked=false;
-        if(item==selected){
-          selected.checked=true
+   updateStatus = (selected, searchTypes) => {
+
+    searchTypes.map(item => {
+      item.checked = false;
+      if (item === selected){
+          selected.checked = true;
         }
-    })  
+    });
   }
 }

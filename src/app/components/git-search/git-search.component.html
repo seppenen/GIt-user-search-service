@@ -11,32 +11,32 @@
      <div class="wrapper">
          <div class="title"><h1> Git user search </h1></div>
      <div class="search">
-       
+
             <ng-container *ngIf="searchTypes">
               <div  class="searchTypeBtn" *ngFor="let item of searchTypes" >
-               <input  type="button" [ngClass]="item.checked ? ' active' : ''"  value="{{item.label}}" (click)="setSearchType(item)"> 
+               <input  type="button" [ngClass]="item.checked ? ' active' : ''"  value="{{item.label}}" (click)="setSearchType(item)">
               </div>
             </ng-container>
-           
-          </div> 
+
+          </div>
     <div class="search">
-    <input type="text" class="input" [(ngModel)]="input">
-    <input type="button" value="Search" (click)="getUserData()"> 
-    </div>  
-     <div class="resultContent" > 
-        <div class="resultItem"  *ngFor="let item of userProfile ">
-                <div class="item"> 
-                    {{item.login}} 
+    <input type="text" class="input"  [(ngModel)]="input">
+    <input type="button" value="Search" (click)="getUserData()">
+    </div>
+     <div class="resultContent" >
+        <div class="resultItem"  *ngFor="let item of searchData ">
+                <div class="item">
+                    {{item.login}}
                </div>
                <div class="gitLink">
-                   <button (click)="openGitProfile(item)">Link to Github</button> 
-                </div>    
-            </div> 
+                   <button (click)="openGitProfile(item)">Link to Github</button>
+                </div>
+            </div>
              <div class="pagination"  *ngFor="let page of pages ">
                 <a (click)="changePage(page)" href="#">{{page}}</a>
-           
-        </div>  
-       
+
+        </div>
+
     </div>
 </div>
 </div>

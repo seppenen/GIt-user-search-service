@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'https://api.github.com/'
+  baseUrl: 'https://api.github.com/search/users?q=[searchParam][input]&page=[currentPage]&per_page=20'
 };
 
 /*
