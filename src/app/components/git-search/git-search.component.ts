@@ -4,6 +4,7 @@ import {DataObj} from '../../models/models';
 import {SelectService} from '../../services/select.service';
 import {PaginationService} from '../../services/pagination.service';
 
+
 @Component({
   selector: 'app-git-search',
   templateUrl: './git-search.component.html',
@@ -12,7 +13,7 @@ import {PaginationService} from '../../services/pagination.service';
 export class GitSearchComponent implements OnInit  {
 
 
-  searchData: any;
+  searchData: DataObj;
   searchTypes: DataObj;
   pages: any;
   input: string;
@@ -37,12 +38,19 @@ export class GitSearchComponent implements OnInit  {
   }
 
   changePage(page): void {
-
    this.currentPage = page;
    this.getUserData();
 
   }
 
+  updateSearchData(value){
+    this.searchData=value
+
+  }
+
+  updatePagesCount(value){
+    this.paginationService.getPages(this.currentPage ? this.currentPage : 1, value.total_count);
+  }
   getUserData(): void {
 
 if (typeof this.input !== 'undefined' && this.input.length !== 0){
@@ -51,9 +59,9 @@ if (typeof this.input !== 'undefined' && this.input.length !== 0){
 
     this.apiService.fetch(searchParam.value, this.input, this.currentPage ? this.currentPage : 1)
         .subscribe((res:DataObj) => {
-            this.searchData=res.items
 
-            this.pages = this.paginationService.getPages(this.currentPage ? this.currentPage : 1, res.total_count);
+            this.updateSearchData(res);
+            this.updatePagesCount(res);
     },
       (error) => {
          console.log('getData not implemented', error.status);

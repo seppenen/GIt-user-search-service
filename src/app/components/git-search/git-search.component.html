@@ -24,14 +24,17 @@
     <input type="button" value="Search" (click)="getUserData()">
     </div>
      <div class="resultContent" >
-        <div class="resultItem"  *ngFor="let item of searchData ">
+       <ng-container *ngIf="searchData">
+
+        <div class="resultItem"  *ngFor="let item of searchData.items ">
                 <div class="item">
-                    {{item.login}}
+                    {{item['login']}}
                </div>
                <div class="gitLink">
                    <button (click)="openGitProfile(item)">Link to Github</button>
                 </div>
             </div>
+       </ng-container>
              <div class="pagination"  *ngFor="let page of pages ">
                 <a (click)="changePage(page)" href="#">{{page}}</a>
 
