@@ -13,11 +13,11 @@ import {PaginationService} from '../../services/pagination.service';
 export class GitSearchComponent implements OnInit  {
 
 
-  searchData: DataObj;
-  searchTypes: DataObj;
-  pages: any;
-  input: string;
-  currentPage;
+  searchData: DataObj
+  searchTypes: DataObj
+  pages: any
+  input: string
+  currentPage
 
   constructor(private paginationService: PaginationService, private apiService: ApiService, private selectService: SelectService) { }
 
@@ -27,16 +27,16 @@ export class GitSearchComponent implements OnInit  {
   }
 
   setSearchType(selected: any): void {
-    this.selectService.updateStatus(selected, this.searchTypes);
+    this.selectService.updateStatus(selected, this.searchTypes)
   }
 
   openGitProfile(item:any): void {
-    window.open('http://github.com/' + item.login);
+    window.open('http://github.com/' + item.login)
   }
 
   changePage(page:Number): void {
-   this.currentPage = page;
-   this.getUserData();
+   this.currentPage = page
+   this.getUserData()
   }
 
   setSearchData(value:DataObj){
@@ -45,7 +45,7 @@ export class GitSearchComponent implements OnInit  {
 
   setPages(){
     this.pages=this.paginationService
-      .getPages(this.currentPage ? this.currentPage : 1, this.searchData.total_count);
+      .getPages(this.currentPage ? this.currentPage : 1, this.searchData.total_count)
   }
 
   getUserData(): void {
@@ -54,11 +54,11 @@ export class GitSearchComponent implements OnInit  {
     const searchParam = this.searchTypes.find(item => (item.checked === true));
       this.apiService.fetch(searchParam.value, this.input, this.currentPage ? this.currentPage : 1)
           .subscribe((res:DataObj) => {
-              this.setSearchData(res);
-              this.setPages();
+              this.setSearchData(res)
+              this.setPages()
       },
       (error) => {
-         console.log('getData not implemented', error.status);
+         console.log('getData not implemented', error.status)
       });
 
   }
