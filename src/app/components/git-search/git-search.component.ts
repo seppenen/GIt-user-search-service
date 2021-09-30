@@ -30,16 +30,16 @@ export class GitSearchComponent implements OnInit  {
     this.selectService.updateStatus(selected, this.searchTypes);
   }
 
-  openGitProfile(item): void {
+  openGitProfile(item:any): void {
     window.open('http://github.com/' + item.login);
   }
 
-  changePage(page): void {
+  changePage(page:Number): void {
    this.currentPage = page;
    this.getUserData();
   }
 
-  setSearchData(value){
+  setSearchData(value:DataObj){
     this.searchData=value
   }
 

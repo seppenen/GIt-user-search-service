@@ -1,12 +1,10 @@
 
 import {Injectable} from '@angular/core';
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class SelectService {
-
   constructor() {}
 
   createData = () => {
@@ -18,7 +16,7 @@ export class SelectService {
    return searchTypeItems;
   }
 
-   updateStatus = (selected, searchTypes) => {
+   updateStatus(selected, searchTypes) {
 
     searchTypes.map(item => {
       item.checked = false;

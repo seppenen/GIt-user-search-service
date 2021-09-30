@@ -4,7 +4,7 @@ export class DataObj {
   total_count: number;
   incomplete_results: boolean;
   items: userProfile;
-
+  searchType: searchType;
   find(param: (item) => boolean):any {
 
   }
