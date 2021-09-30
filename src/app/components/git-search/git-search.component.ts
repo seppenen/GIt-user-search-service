@@ -24,45 +24,39 @@ export class GitSearchComponent implements OnInit  {
   ngOnInit(): void {
     this.searchTypes = this.selectService.createData();
 
-
   }
 
   setSearchType(selected: any): void {
-
     this.selectService.updateStatus(selected, this.searchTypes);
   }
 
   openGitProfile(item): void {
-
     window.open('http://github.com/' + item.login);
   }
 
   changePage(page): void {
    this.currentPage = page;
    this.getUserData();
-
   }
 
   updateSearchData(value){
     this.searchData=value
-
   }
 
-  updatePagesCount(value){
-    this.paginationService.getPages(this.currentPage ? this.currentPage : 1, value.total_count);
+  updatePagesCount(){
+    this.pages=this.paginationService
+      .getPages(this.currentPage ? this.currentPage : 1, this.searchData.total_count);
   }
+
   getUserData(): void {
 
-if (typeof this.input !== 'undefined' && this.input.length !== 0){
-
+  if (typeof this.input !== 'undefined' && this.input.length !== 0){
     const searchParam = this.searchTypes.find(item => (item.checked === true));
-
-    this.apiService.fetch(searchParam.value, this.input, this.currentPage ? this.currentPage : 1)
-        .subscribe((res:DataObj) => {
-
-            this.updateSearchData(res);
-            this.updatePagesCount(res);
-    },
+      this.apiService.fetch(searchParam.value, this.input, this.currentPage ? this.currentPage : 1)
+          .subscribe((res:DataObj) => {
+              this.updateSearchData(res);
+              this.updatePagesCount();
+      },
       (error) => {
          console.log('getData not implemented', error.status);
       });
