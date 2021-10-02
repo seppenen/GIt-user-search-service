@@ -17,7 +17,7 @@ export class MainComponentComponent implements OnInit {
   pages: []
   page: number
 
-  constructor(private paginationService: PaginationService, private apiService: ApiService, private selectService: SelectService, private cd: ChangeDetectorRef) { }
+  constructor(private paginationService: PaginationService, private apiService: ApiService, private selectService: SelectService) { }
 
 
   ngOnInit(): void {
