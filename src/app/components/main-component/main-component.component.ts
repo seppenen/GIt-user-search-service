@@ -14,7 +14,6 @@ export class MainComponentComponent implements OnInit {
   input: string
   searchData: DataObj
   searchTypes: DataObj
-  pages: []
   page: number
 
   constructor(private paginationService: PaginationService, private apiService: ApiService, private selectService: SelectService) { }
