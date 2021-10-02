@@ -41,7 +41,7 @@ export class GitSearchComponent implements OnInit  {
     return this.searchTypes.find(item => (item.checked === true)).value;
   }
 
-  getUserData(): void {
+  getData(): void {
     if (typeof this.input !== 'undefined' && this.input.length !== 0){
 
       const searchParam = this.getParams();
@@ -58,7 +58,7 @@ export class GitSearchComponent implements OnInit  {
 
   changePage(page:number): void {
    this.page = page
-   this.getUserData()
+   this.getData()
   }
 
   openGitProfile(item:any): void {

@@ -4,27 +4,28 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class PaginationService {
- 
+
   currentPage:number
   buttonArray:any
   lastPage:number
+
   constructor() { }
 
   getPages(page, total_count){
     this.buttonArray=[]
-    this.currentPage=page;	
+    this.currentPage=page;
     this.lastPage=Math.ceil(total_count / 20)
 
     if (typeof total_count !=="undefined"){
         const temp=1000/20
-       
+
       if(this.lastPage>=temp){
         this.lastPage=temp
       }
-  }  
+  }
 
     if (this.currentPage == 1 || this.currentPage == 2 || this.currentPage == 3) {
-    
+
       for(var i = 1; i <= 7; i++){
         if((total_count-20)>=0){
           this.buttonArray.push(i)
@@ -47,4 +48,4 @@ export class PaginationService {
 
 
 
- 
+
