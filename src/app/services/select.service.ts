@@ -8,6 +8,7 @@ export class SelectService {
   constructor() {}
 
   initSearchTypes (){
+
    const searchTypeItems: any = []
    searchTypeItems.push({value: 'user:', label: 'User', checked: true})
    searchTypeItems.push({value: 'location:', label: 'Location', checked: false})
@@ -18,11 +19,8 @@ export class SelectService {
 
    updateStatus(selected, searchTypes) {
 
-    searchTypes.map(item => {
-      item.checked = false
-      if (item === selected){
-          selected.checked = true
-        }
-    });
+     searchTypes.filter(item => (item!=selected)).forEach(item => (item.checked = false))
+     searchTypes.find(item => (item == selected)).checked = true
+
   }
 }
