@@ -4,7 +4,6 @@ import {DataObj} from '../../models/models';
 import {SelectService} from '../../services/select.service';
 import {PaginationService} from '../../services/pagination.service';
 
-
 @Component({
   selector: 'app-git-search',
   templateUrl: './git-search.component.html',
@@ -12,31 +11,21 @@ import {PaginationService} from '../../services/pagination.service';
 })
 export class GitSearchComponent implements OnInit  {
 
-
   searchData: DataObj
   searchTypes: DataObj
-  pages: any
+  pages: []
   input: string
-  currentPage
+  page: number
 
   constructor(private paginationService: PaginationService, private apiService: ApiService, private selectService: SelectService) { }
 
   ngOnInit(): void {
+    this.page = 1
     this.searchTypes = this.selectService.createData();
-
   }
 
   setSearchType(selected: any): void {
     this.selectService.updateStatus(selected, this.searchTypes)
-  }
-
-  openGitProfile(item:any): void {
-    window.open('http://github.com/' + item.login)
-  }
-
-  changePage(page:Number): void {
-   this.currentPage = page
-   this.getUserData()
   }
 
   setSearchData(value:DataObj){
@@ -45,23 +34,34 @@ export class GitSearchComponent implements OnInit  {
 
   setPages(){
     this.pages=this.paginationService
-      .getPages(this.currentPage ? this.currentPage : 1, this.searchData.total_count)
+      .getPages(this.page, this.searchData.total_count)
+  }
+
+  getParams(){
+    return this.searchTypes.find(item => (item.checked === true)).value;
   }
 
   getUserData(): void {
+    if (typeof this.input !== 'undefined' && this.input.length !== 0){
 
-  if (typeof this.input !== 'undefined' && this.input.length !== 0){
-    const searchParam = this.searchTypes.find(item => (item.checked === true));
-      this.apiService.fetch(searchParam.value, this.input, this.currentPage ? this.currentPage : 1)
-          .subscribe((res:DataObj) => {
-              this.setSearchData(res)
-              this.setPages()
-      },
-      (error) => {
-         console.log('getData not implemented', error.status)
-      });
-
+      const searchParam = this.getParams();
+      this.apiService.fetch(searchParam, this.input, this.page)
+        .subscribe((res:DataObj) => {
+            this.setSearchData(res)
+            this.setPages()
+          },
+          (error) => {
+            console.log('getData not implemented', error.status)
+          });
+    }
   }
 
+  changePage(page:number): void {
+   this.page = page
+   this.getUserData()
+  }
+
+  openGitProfile(item:any): void {
+    window.open('http://github.com/' + item.login)
   }
 }
