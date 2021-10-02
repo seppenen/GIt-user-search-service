@@ -29,11 +29,11 @@ export class GitSearchComponent implements OnInit  {
   }
 
   setSearchData(value:DataObj){
-    this.searchData=value
+    this.searchData = value
   }
 
   setPages(){
-    this.pages=this.paginationService
+    this.pages = this.paginationService
       .getPages(this.page, this.searchData.total_count)
   }
 
