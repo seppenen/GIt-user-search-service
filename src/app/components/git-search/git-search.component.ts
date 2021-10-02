@@ -32,7 +32,12 @@ export class GitSearchComponent implements OnInit  {
     this.searchData=value
   }
 
-  setPages(){
+  setPage(page:number): void {
+    this.page = page
+    this.getData()
+  }
+
+  getPages(){
     this.pages=this.paginationService
       .getPages(this.page, this.searchData.total_count)
   }
@@ -42,13 +47,13 @@ export class GitSearchComponent implements OnInit  {
   }
 
   getData(): void {
-    if (typeof this.input !== 'undefined' && this.input.length !== 0){
 
+    if (typeof this.input !== 'undefined' && this.input.length !== 0){
       const searchParam = this.getParams();
       this.apiService.fetch(searchParam, this.input, this.page)
         .subscribe((res:DataObj) => {
             this.setSearchData(res)
-            this.setPages()
+            this.getPages()
           },
           (error) => {
             console.log('getData not implemented', error.status)
@@ -56,12 +61,9 @@ export class GitSearchComponent implements OnInit  {
     }
   }
 
-  changePage(page:number): void {
-   this.page = page
-   this.getData()
-  }
-
   openGitProfile(item:any): void {
     window.open('http://github.com/' + item.login)
   }
+
+
 }
