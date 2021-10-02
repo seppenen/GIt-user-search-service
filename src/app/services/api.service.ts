@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {environment} from '../../environments/environment'
 
 @Injectable({
@@ -11,12 +11,12 @@ export class ApiService  {
 
   constructor(private http: HttpClient) { }
 
-  fetch(searchParam, input, page) {
-    return this.http.get(this.baseUrl
-          .replace('[searchParam]', searchParam)
-          .replace('[input]', input)
-          .replace('[currentPage]', page)
-        );
+  fetch(searchParam, input, page?) {
+    let params = new HttpParams()
+      .set('q', searchParam+input)
+      .set('page', page ? page : 1)
+      .set('per_page', '20');
+        return this.http.get(this.baseUrl, {params});
   }
 }
 

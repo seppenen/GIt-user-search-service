@@ -20,8 +20,7 @@ export class GitSearchComponent implements OnInit  {
   constructor(private paginationService: PaginationService, private apiService: ApiService, private selectService: SelectService) { }
 
   ngOnInit(): void {
-    this.page = 1
-    this.searchTypes = this.selectService.createData();
+    this.searchTypes = this.selectService.initSearchTypes();
   }
 
   setSearchType(selected: any): void {
@@ -34,7 +33,7 @@ export class GitSearchComponent implements OnInit  {
 
   setPages(){
     this.pages = this.paginationService
-      .getPages(this.page, this.searchData.total_count)
+      .getPages(this.searchData.total_count, this.page)
   }
 
   getParams(){

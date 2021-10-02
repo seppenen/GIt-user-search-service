@@ -5,15 +5,15 @@ import { Injectable } from '@angular/core';
 })
 export class PaginationService {
 
-  currentPage:number
+  page:number
   buttonArray:any
   lastPage:number
 
   constructor() { }
 
-  getPages(page, total_count){
+  getPages(total_count, page?){
     this.buttonArray=[]
-    this.currentPage=page;
+    this.page = page ? page : 1
     this.lastPage=Math.ceil(total_count / 20)
 
     if (typeof total_count !=="undefined"){
@@ -24,9 +24,9 @@ export class PaginationService {
       }
   }
 
-    if (this.currentPage == 1 || this.currentPage == 2 || this.currentPage == 3) {
+    if (this.page == 1 || this.page == 2 || this.page == 3) {
 
-      for(var i = 1; i <= 7; i++){
+      for(let i = 1; i <= 7; i++){
         if((total_count-20)>=0){
           this.buttonArray.push(i)
         }else{
@@ -34,11 +34,11 @@ export class PaginationService {
         }
      }
     }
-    else if (this.currentPage == this.lastPage || this.currentPage == this.lastPage - 1) {
+    else if (this.page == this.lastPage || this.page == this.lastPage - 1) {
       this.buttonArray = [this.lastPage - 3, this.lastPage - 2, this.lastPage - 1, this.lastPage ];
     }
     else {
-      this.buttonArray = [this.currentPage - 3,this.currentPage  -2, this.currentPage - 1, this.currentPage, this.currentPage + 1,this.currentPage + 2,this.currentPage + 3];
+      this.buttonArray = [this.page - 3,this.page  -2, this.page - 1, this.page, this.page + 1,this.page + 2,this.page + 3];
     }
 
     return this.buttonArray

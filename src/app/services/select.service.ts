@@ -7,7 +7,7 @@ import {Injectable} from '@angular/core';
 export class SelectService {
   constructor() {}
 
-  createData = () => {
+  initSearchTypes (){
    const searchTypeItems: any = []
    searchTypeItems.push({value: 'user:', label: 'User', checked: true})
    searchTypeItems.push({value: 'location:', label: 'Location', checked: false})
