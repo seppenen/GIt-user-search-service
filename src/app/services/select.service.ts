@@ -17,10 +17,9 @@ export class SelectService {
    return searchTypeItems;
   }
 
-   updateStatus(selected, searchTypes) {
-
+   updateParam(selected, searchTypes): any{
      searchTypes.filter(item => (item!=selected)).forEach(item => (item.checked = false))
      searchTypes.find(item => (item == selected)).checked = true
-
   }
+
 }

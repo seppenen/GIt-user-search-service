@@ -1,0 +1,11 @@
+<ng-container *ngIf="searchData">
+
+  <div class="resultItem"  *ngFor="let item of searchData.items ">
+    <div class="item">
+      {{item['login']}}
+    </div>
+    <div class="gitLink">
+      <button (click)="openGitProfile(item)">Link to Github</button>
+    </div>
+  </div>
+</ng-container>

@@ -1,0 +1,37 @@
+.search{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+
+.container{
+  margin: auto;
+  width: 800px;
+}
+.input{
+
+  width: 100%;
+}
+.title{
+  text-align: center;
+}
+.searchBtn{
+  margin: 5px;
+}
+
+
+
+.resultContent{
+  text-align: center;
+}
+.searchTypeBtn{
+
+  display:inline;
+  margin: 5px;
+}
+.active{
+
+  border: 3px solid black
+}
+
