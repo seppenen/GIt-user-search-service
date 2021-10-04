@@ -9,10 +9,11 @@ import {DataObj} from '../../models/models';
   styleUrls: ['./pagination.component.css']
 })
 export class PaginationComponent implements OnChanges{
-           page = 1
+
   @Input() dataObj: DataObj
   @Input() pageArray: any
   @Output()onChange = new EventEmitter()
+  page: number
 
 
   constructor(private paginationService: PaginationService) { }
@@ -20,13 +21,18 @@ export class PaginationComponent implements OnChanges{
 
   onPageChange(page:number): void {
     this.page = page
-    this.pageArray = this.paginationService.getPages(this.dataObj['total_count'], this.page)
     this.onChange.emit(page)
+
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+
      if(typeof this.dataObj !== 'undefined'){
        this.pageArray = this.paginationService.getPages(this.dataObj['total_count'], this.page)
+       if(Object.keys(this.pageArray).length == 1){
+         this.onChange.emit(1)
+       }
      }
+
   }
 }

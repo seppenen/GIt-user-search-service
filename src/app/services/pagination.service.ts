@@ -14,20 +14,22 @@ export class PaginationService {
   getPages(total_count, page?){
     this.buttonArray=[]
     this.page = page ? page : 1
-    this.lastPage=Math.ceil(total_count / 20)
+    this.lastPage=Math.ceil(total_count / 15)
 
     if (typeof total_count !=="undefined"){
-        const temp=1000/20
+        const temp=1000/15
 
       if(this.lastPage>=temp){
         this.lastPage=temp
       }
   }
-
-    if (this.page == 1 || this.page == 2 || this.page == 3) {
+    if((total_count-15)<=0){
+      this.buttonArray=[1]
+    }
+    else if (this.page == 1 || this.page == 2 || this.page == 3) {
 
       for(let i = 1; i <= 7; i++){
-        if((total_count-20)>=0){
+        if((total_count-15)>=0){
           this.buttonArray.push(i)
         }else{
           this.buttonArray=[1]

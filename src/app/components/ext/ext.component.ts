@@ -15,6 +15,7 @@ export class ExtComponent implements OnInit {
   dataObj: DataObj
   page: number
 
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -43,7 +44,7 @@ export class ExtComponent implements OnInit {
 }
 
   setPage(value): void {
-   this.page = value
+    this.page = value
     this.updateQueryParams()
   }
 
