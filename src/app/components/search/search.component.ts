@@ -9,9 +9,9 @@ import {SelectService} from '../../services/select.service';
 })
 export class SearchComponent {
 
-  @Input() dataObj: DataObj;
+  @Input()  dataObj: DataObj;
   @Output() onNext = new EventEmitter();
-  input: string;
+            input: string;
 
   constructor(private selectService:  SelectService) {}
 
