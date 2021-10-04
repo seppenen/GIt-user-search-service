@@ -2,7 +2,6 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {DataObj} from '../../models/models';
 import {SelectService} from '../../services/select.service';
 
-
 @Component({
   selector: 'search',
   templateUrl: './search.component.html',
