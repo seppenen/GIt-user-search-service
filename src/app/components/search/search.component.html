@@ -1,0 +1,25 @@
+
+
+<div class="title"><h1> Git user search </h1></div>
+<div class="search">
+  <ng-container *ngIf="dataObj">
+    <div  class="searchTypeBtn" *ngFor="let item of dataObj" >
+      <input  type="button" [ngClass]="item.checked ? ' active' : ''"  value="{{item.value}}" (click)="setSearchTypes(item.value)" />
+    </div>
+  </ng-container>
+</div>
+<div class="search">
+  <input type="text" class="input"  [(ngModel)]="input">
+  <input type="button" value="Search" (click)="next()" >
+</div>
+<ng-container *ngIf="dataObj.userProfile">
+
+  <div class="resultItem" *ngFor="let item of dataObj.userProfile.items ">
+    <div class="item">
+      {{item['login']}}
+    </div>
+    <div class="gitLink">
+      <button (click)="openGitProfile(item)">Link to Github</button>
+    </div>
+  </div>
+</ng-container>

@@ -13,7 +13,7 @@ export class ApiService  {
 
   fetch(searchParam, input, page?) {
     let params = new HttpParams()
-      .set('q', searchParam + input)
+      .set('q', searchParam + ":" + input)
       .set('page', page ? page : 1)
       .set('per_page', '15');
         return this.http.get(this.baseUrl, {params});

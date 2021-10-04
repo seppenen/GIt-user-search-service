@@ -4,16 +4,16 @@ import { HttpClientModule} from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
-import { GitResult } from './components/git-search/git-result';
-import { MainComponentComponent } from './components/main-component/main-component.component';
+import { SearchComponent } from './components/search/search.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { ExtComponent } from './components/ext/ext.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    GitResult,
-    MainComponentComponent,
+    SearchComponent,
     PaginationComponent,
+    ExtComponent,
 
 
   ],

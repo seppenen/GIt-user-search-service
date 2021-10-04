@@ -1,17 +1,19 @@
 
 export class DataObj {
 
-  total_count: number
-  incomplete_results: boolean
-  items: userProfile
-  searchType: searchType
+
+  searchType: any
+  userProfile: any
+  input: string
   find(param: (item) => boolean):any {
 
   }
 }
 
-type userProfile = {
-
+type userProfile =
+[{
+  total_count: number
+  incomplete_results: boolean
   items: [
     {
       login: string
@@ -35,13 +37,14 @@ type userProfile = {
       score: number
     }
   ];
-}
+
+}]
 
 type searchType = {
-
       value: string
-      label: string
       checked: boolean
-};
+      find(param: (item) => boolean): any;
+  }
+
 
 

@@ -1,25 +1,26 @@
 
 import {Injectable} from '@angular/core';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class SelectService {
   constructor() {}
 
-  initSearchTypes (){
+  initSearchParams (){
 
    const searchTypeItems: any = []
-   searchTypeItems.push({value: 'user:', label: 'User', checked: true})
-   searchTypeItems.push({value: 'location:', label: 'Location', checked: false})
-   searchTypeItems.push({value: 'language:', label: 'Language', checked: false})
+   searchTypeItems.push({value: 'User', checked: false})
+   searchTypeItems.push({value: 'Location', checked: true})
+   searchTypeItems.push({value: 'Language', checked: false})
 
    return searchTypeItems;
   }
 
-   updateParam(selected, searchTypes): any{
-     searchTypes.filter(item => (item!=selected)).forEach(item => (item.checked = false))
-     searchTypes.find(item => (item == selected)).checked = true
-  }
+  updateSearch(selected, searchTypes): any{
 
+    searchTypes.filter(item => (item!=selected)).forEach(item => (item.checked = false))
+    searchTypes.find(item => (item.value == selected)).checked = true
+  }
 }

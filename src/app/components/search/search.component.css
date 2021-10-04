@@ -5,10 +5,7 @@
   margin-bottom: 5px;
 }
 
-.container{
-  margin: auto;
-  width: 800px;
-}
+
 .input{
 
   width: 100%;
@@ -20,11 +17,25 @@
   margin: 5px;
 }
 
-
-
-.resultContent{
-  text-align: center;
+.resultItem{
+  display: flex;
+  height: 30px;
+  justify-content: space-between;
+  margin: auto;
+  padding-top: 10px;
+  width: 300px;
 }
+.item{
+
+  font-size: 18px;
+}
+
+.gitLink{
+  margin-left: 10px;
+  float:right;
+}
+
+
 .searchTypeBtn{
 
   display:inline;
