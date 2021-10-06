@@ -1,11 +1,11 @@
 
 import {Injectable} from '@angular/core';
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class SelectService {
+
   constructor() {}
 
   initSearchParams (){
@@ -18,8 +18,8 @@ export class SelectService {
    return searchTypeItems;
   }
 
-  updateSearch(selected, searchTypes): any{
 
+  updateSearch(selected, searchTypes): any{
     searchTypes.filter(item => (item!=selected)).forEach(item => (item.checked = false))
     searchTypes.find(item => (item.value == selected)).checked = true
   }

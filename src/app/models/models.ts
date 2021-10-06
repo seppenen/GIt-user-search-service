@@ -1,10 +1,9 @@
 
 export class DataObj {
 
-
   searchType: any
   userProfile: any
-  input: string
+  query: string
   find(param: (item) => boolean):any {
 
   }

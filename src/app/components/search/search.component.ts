@@ -11,20 +11,23 @@ export class SearchComponent {
 
   @Input()  dataObj: DataObj;
   @Output() onNext = new EventEmitter();
+  @Output() onChange= new EventEmitter();
             input: string;
 
   constructor(private selectService:  SelectService) {}
 
   setSearchTypes(value){
     this.selectService.updateSearch(value, this.dataObj)
+    this.input = ''
+    this.onChange.emit()
   }
 
   openGitProfile(item:any): void {
     window.open('http://github.com/' + item.login)
   }
 
-  next(){
-      this.dataObj.input = this.input
+  submit(){
+      this.dataObj.query = this.input
       this.onNext.emit()
 
   }

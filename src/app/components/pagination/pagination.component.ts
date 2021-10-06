@@ -1,6 +1,5 @@
-import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {PaginationService} from '../../services/pagination.service';
-import {DataObj} from '../../models/models';
 
 
 @Component({
@@ -8,31 +7,23 @@ import {DataObj} from '../../models/models';
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.css']
 })
-export class PaginationComponent implements OnChanges{
+export class PaginationComponent implements  OnInit{
 
-  @Input() dataObj: DataObj
-  @Input() pageArray: any
   @Output()onChange = new EventEmitter()
-  page: number
-
+           pageArray: any
 
   constructor(private paginationService: PaginationService) { }
 
+  ngOnInit(): void {
 
-  onPageChange(page:number): void {
-    this.page = page
-    this.onChange.emit(page)
-
+    this.paginationService.pagesObs.subscribe(data =>{
+      if( data != null && typeof data !== undefined){
+      this.pageArray = this.paginationService.getPages(data.total_count, data.page)
+      }
+    })
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-
-     if(typeof this.dataObj !== 'undefined'){
-       this.pageArray = this.paginationService.getPages(this.dataObj['total_count'], this.page)
-       if(Object.keys(this.pageArray).length == 1){
-         this.onChange.emit(1)
-       }
-     }
-
+  onPageChange(page:number): void {
+    this.onChange.emit(page)
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DataObj} from '../../models/models';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {PaginationService} from '../../services/pagination.service';
@@ -15,7 +15,6 @@ export class ExtComponent implements OnInit {
   dataObj: DataObj
   page: number
 
-
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -28,41 +27,49 @@ export class ExtComponent implements OnInit {
     this.route.queryParams.subscribe( (params: Params) => {
       if(params.page){
         this.page = params.page
-          if(this.dataObj.input){
-            this.getData()
-          }
+        if( typeof this.dataObj.query !== 'undefined'){
+          this.getData()
+        }
       }
     })
   }
 
-  updateQueryParams(){
-  this.router.navigate([''], {
+  updatePagination(): void {
+      this.paginationService.updateObsData({
+        total_count: this.dataObj.userProfile.total_count,
+        page: this.page
+      })
+  }
+
+  updateQueryParams(page){
+  this.router.navigate(
+    [''],
+    {
     queryParams: {
-      page: this.page
+      page: page
     }
   })
 }
 
-  setPage(value): void {
-    this.page = value
-    this.updateQueryParams()
-  }
-
-  getParams(){
-    return this.dataObj.find(item => (item.checked === true)).value.toLowerCase();
-  }
-
   getData(): void {
-
-    const searchParam = this.getParams();
-    this.apiService.fetch(searchParam, this.dataObj.input, this.page)
+    const searchParam = this.dataObj.find(item => (item.checked === true)).value.toLowerCase()
+    this.apiService.fetch(searchParam, this.dataObj.query, this.page)
     .subscribe((res: DataObj) => {
         this.dataObj.userProfile = res
+        this.updatePagination()
       },
       (error) => {
-        console.log('getData not implemented', error.status)
+        console.log('getData() not implemented', error.status)
       }
       )
   }
+
+  resetForm() {
+    this.dataObj.userProfile = new DataObj()
+    this.page = null
+    this.updatePagination()
+    this.updateQueryParams(null)
+  }
+
 }
 

@@ -1,9 +1,9 @@
 
 <div class="container">
   <div class="wrapper">
-    <search (onNext)="getData()" [dataObj]="dataObj"></search>
+    <search (onNext)="getData()" (onChange)="resetForm()" [dataObj]="dataObj"></search>
     <div class="resultContent" >
-     <app-pagination [dataObj]="dataObj.userProfile" (onChange)="setPage($event)"></app-pagination>
+     <app-pagination  (onChange)="updateQueryParams($event)"></app-pagination>
     </div>
   </div>
 </div>
