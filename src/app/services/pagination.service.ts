@@ -15,7 +15,7 @@ export class PaginationService {
 
   constructor() { }
 
-  updateObsData(data: {total_count: number, page: number}) {
+  setObsData(data: {total_count: number, page: number}) {
     this.pagesSubject.next(data);
   }
 
