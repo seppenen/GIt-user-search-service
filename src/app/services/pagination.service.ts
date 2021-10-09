@@ -25,7 +25,7 @@ export class PaginationService {
     this.lastPage=Math.ceil(total_count / 15)
 
     if (typeof total_count !=="undefined"){
-        const temp = 1000 / 15
+        const temp = 1000 / 1
 
       if(this.lastPage>=temp){
         this.lastPage=temp

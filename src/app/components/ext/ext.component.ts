@@ -24,11 +24,11 @@ export class ExtComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataObj = this.selectService.initSearchParams()
-    this.route.queryParams.subscribe( (params: Params) => {
-      if(params.page){
+    this.route.queryParams.subscribe( async (params: Params) => {
+      if (params.page) {
         this.page = params.page
-        if( typeof this.dataObj.query !== 'undefined'){
-          this.getData()
+        if (typeof this.dataObj.query !== 'undefined') {
+           this.getData()
         }
       }
     })
@@ -51,10 +51,10 @@ export class ExtComponent implements OnInit {
   })
 }
 
-  getData(): void {
+   getData(): void {
     const searchParam = this.dataObj.find(item => (item.checked === true)).value.toLowerCase()
-    this.apiService.fetch(searchParam, this.dataObj.query, this.page)
-    .subscribe((res: DataObj) => {
+     this.apiService.fetch(searchParam, this.dataObj.query, this.page)
+    .then((res: DataObj) => {
         this.dataObj.userProfile = res
         this.updatePagination()
       },

@@ -11,12 +11,12 @@ export class ApiService  {
 
   constructor(private http: HttpClient) { }
 
-  fetch(searchParam, input, page?) {
+  fetch(searchParam, input, page?): Promise<any>{
     let params = new HttpParams()
       .set('q', searchParam + ":" + input)
       .set('page', page ? page : 1)
       .set('per_page', '15');
-        return this.http.get(this.baseUrl, {params});
+        return this.http.get(this.baseUrl, {params}).toPromise();
   }
 }
 
