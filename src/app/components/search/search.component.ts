@@ -18,7 +18,7 @@ export class SearchComponent {
 
   setSearchTypes(value){
     this.selectService.updateSearch(value, this.dataObj)
-    this.input = ''
+    this.input = null
     this.onChange.emit()
   }
 
