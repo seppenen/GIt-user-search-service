@@ -22,8 +22,10 @@ export class PaginationComponent implements  OnInit{
       }
     })
   }
-
+  
   onPageChange(page:number): void {
     this.onChange.emit(page)
+
   }
+
 }

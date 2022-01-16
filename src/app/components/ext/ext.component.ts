@@ -43,10 +43,7 @@ export class ExtComponent implements OnInit {
 }
 
   updatePagination(): void {
-    this.paginationService.setObsData({
-      total_count: this.dataObj.userProfile.total_count,
-      page: this.page
-    })
+    this.paginationService.setObsData({ total_count: this.dataObj.userProfile.total_count, page: this.page })
   }
 
    getData(): void {
