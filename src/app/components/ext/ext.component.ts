@@ -43,13 +43,19 @@ export class ExtComponent implements OnInit {
 }
 
   updatePagination(): void {
-    this.paginationService.setObsData({ total_count: this.dataObj.userProfile.total_count, page: this.page })
+
+    this.paginationService.setObsData({
+      total_count: this.dataObj.userProfile.total_count,
+      page: this.page
+    })
   }
 
    getData(): void {
 
      if (typeof this.dataObj.query !== 'undefined' && this.dataObj.query != null) {
+
        const searchParam = this.dataObj.find(item => (item.checked === true)).value.toLowerCase()
+
          this.apiService.fetch(searchParam, this.dataObj.query, this.page)
           .then((res: DataObj) => {
               this.dataObj.userProfile = res
