@@ -27,6 +27,7 @@ export class SearchComponent {
   }
 
   submit(){
+
       this.dataObj.query = this.input
       this.onNext.emit()
 

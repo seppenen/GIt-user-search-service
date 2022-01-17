@@ -6,8 +6,8 @@ import {BehaviorSubject} from 'rxjs';
 })
 export class PaginationService {
 
-   pagesSubject = new BehaviorSubject(null);
-   pagesObs = this.pagesSubject.asObservable();
+  pagesSubject = new BehaviorSubject(null);
+  pagesObs = this.pagesSubject.asObservable();
 
   page: number
   pagesArray
